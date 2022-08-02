@@ -1,0 +1,21 @@
+name: CI
+# Run this workflow every time a commit gets pushed to main or a pull request gets opened against main
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+    build:
+        name: Call Azure Pipeline
+        runs-on: ubuntu-latest
+        steps:
+        - name: Azure Pipelines Action
+          uses: Azure/pipelines@v1
+          with:
+            azure-devops-project-url: https://bceovs01.visualstudio.com/Cloned%20MS%20GITHUB%20Repos
+            azure-pipeline-name: 'Azure_Synapse_Toolbox'
+            azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
